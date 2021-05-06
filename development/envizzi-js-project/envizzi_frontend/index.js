@@ -10,21 +10,20 @@ function getBoards() {
     .then(boards => {
         boards.data.forEach(board => {
             const boardVisual = `
-            <div data-id=${board.id}>
-                <h2>${board.attributes.title}</h2>
-            </div> `;
+                <div data-id=${board.id}>
+                    <h2>${board.attributes.title}</h2>
+                </div> `;
 
-        board.attributes.items.forEach(item => {
-            const itemVisual = `
-            <div item-id=${item.id}></div>
-                <p>${item.name}</p>`
+        // board.attributes.items.forEach(item => {
+        //     const itemVisual = `
+        //     <div item-id=${item.id}></div>
+        //         <p>${item.name}</p>`
          })
 
 
-            document.querySelector('#board-container').innerHTML += boardVisual 
-            document.querySelector('#board-container').innerHTML += itemVisual
+            document.querySelector('#board-container').innerHTML += boardVisual
+    
 
         })
-    })
 }
 
