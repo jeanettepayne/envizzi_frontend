@@ -14,7 +14,16 @@ function getBoards() {
                 <h2>${board.attributes.title}</h2>
             </div> `;
 
-            document.querySelector('#board-container').innerHTML += boardVisual
+        board.attributes.items.forEach(item => {
+            const itemVisual = `
+            <div item-id=${item.id}></div>
+                <p>${item.name}</p>`
+         })
+
+
+            document.querySelector('#board-container').innerHTML += boardVisual 
+            document.querySelector('#board-container').innerHTML += itemVisual
+
         })
     })
 }
