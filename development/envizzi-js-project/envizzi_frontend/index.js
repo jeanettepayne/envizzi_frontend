@@ -67,6 +67,13 @@ function getBoards() {
 
 function createFormHandler(e) {
     e.preventDefault()
-        console.log(e);
+    const titleInput = document.querySelector("#input-title").value
+    const itemInput = document.querySelector("#input-item-name").value
+
+    postFetch(titleInput, itemInput)
     
+}
+
+function postFetch(title, item) {
+
 }
