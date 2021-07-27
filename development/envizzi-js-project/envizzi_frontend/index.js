@@ -10,6 +10,10 @@ const endPoint = "http://localhost:3000/api/v1/boards"
 document.addEventListener('DOMContentLoaded', function() {
     console.log(`Okay, it's loaded and working`);
     getBoards();
+
+    const createBoardForm = document.querySelector("#create-board-form")
+
+    createBoardForm.addEventListener("submit", (e) => createFormHandler(e))
 });
 
 
@@ -61,8 +65,8 @@ function getBoards() {
     }
 
 
-// board.attributes.items.forEach(item => {
-//     document.querySelector('#item-container').innerHTML += (`${item.name}`)
-
-/* <p>`${board.attributes.items.forEach(item => {
-        item.name }</p> */
+function createFormHandler(e) {
+    e.preventDefault()
+        console.log(e);
+    
+}
