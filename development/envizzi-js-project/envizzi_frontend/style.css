@@ -1,1 +1,11 @@
 /* reference this file in index.html */
+
+body {
+    background-color: rosybrown;
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+}
+
+h1 {
+    font-style: bold;
+}
