@@ -1,11 +1,12 @@
 const endPoint = "http://localhost:3000/api/v1/boards"
 
-// class Board {
-//     constructor(board) {
-//         this.id = board.id;
-//         this.title = board.title;
-//     }
-// }
+class Board {
+    constructor(board) {
+        this.id = board.id;
+        this.title = board.title;
+        this.item = board.item
+    }
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log(`Okay, it's loaded and working`);
@@ -75,5 +76,16 @@ function createFormHandler(e) {
 }
 
 function postFetch(title, item) {
-
+    fetch(endPoint, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            title: title,
+            item: item
+        })
+    })
+    .then(response => response.json())
+    .then(board => {
+        console.log(board);
+    })
 }
