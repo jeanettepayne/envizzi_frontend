@@ -8,6 +8,12 @@ class Board {
     }
 }
 
+class Item {
+    constructor(item) {
+        this.name = item.name
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     console.log(`Okay, it's loaded and working`);
     getBoards();
@@ -59,5 +65,6 @@ function postFetch(title, item) {
     .then(response => response.json())
     .then(board => {
         console.log(board);
+        const boardData = board.data
     })
 }
