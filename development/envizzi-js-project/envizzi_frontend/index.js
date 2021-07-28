@@ -4,9 +4,12 @@ class Board {
     constructor(board) {
         this.id = board.id;
         this.title = board.title;
-        this.item = board.item
+        // this.items = []
+        this.item = board.attributes.item
     }
+
 }
+
 
 class Item {
     constructor(item) {
@@ -48,19 +51,21 @@ function createFormHandler(e) {
     e.preventDefault()
     const titleInput = document.querySelector("#input-title").value
     const itemInput = document.querySelector("#input-item-name").value
+    const itemInputTwo = document.querySelector("#input-item-name-2").value
+    const itemInputThree = document.querySelector("#input-item-name-3").value
 
-    postFetch(titleInput, itemInput)
+    postFetch(titleInput, itemInput, itemInputTwo, itemInputThree)
     
 }
 
-function postFetch(title, item) {
+function postFetch(title, item1, item2, item3) {
     fetch(endPoint, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
+        body: JSON.stringify({board: {
             title: title,
-            item: item
-        })
+            items: [item1, item2, item3]
+        }})
     })
     .then(response => response.json())
     .then(board => {
