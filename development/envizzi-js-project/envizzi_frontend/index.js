@@ -1,17 +1,28 @@
 const endPoint = "http://localhost:3000/api/v1/boards"
 
 class Board {
-    constructor(board) {
-        this.id = board.id;
-        this.title = board.title;
+    constructor(id, title) {
+        this.id = id;
+        this.title = title;
+        this.items = []
+
+        Board.all.push(this)
+    }
+
+    addItem(item){
+        const newItem = new Item(item.name)
+        this.items.push(newItem)
     }
 
 }
 
 
 class Item {
-    constructor(item) {
-        this.name = item.name
+    constructor(id, name) {
+        this.id = id
+        this.name = name
+
+        Item.all.push(this)
     }
 }
 
@@ -63,6 +74,9 @@ function postFetch(title, item1, item2, item3) {
         body: JSON.stringify({board: {
             title: title,
             items: [item1, item2, item3]
+            // board.items.forEach(item => {
+            //     new Item(item)
+            // })
         }})
     })
     .then(response => response.json())
@@ -71,3 +85,5 @@ function postFetch(title, item1, item2, item3) {
         // const boardData = board.data
     })
 }
+
+
