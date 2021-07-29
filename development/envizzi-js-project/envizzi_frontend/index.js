@@ -67,11 +67,20 @@ function createFormHandler(e) {
     const itemInputTwo = document.querySelector("#input-item-name-2").value
     const itemInputThree = document.querySelector("#input-item-name-3").value
 
-    const itemOne = new Item(itemInput);
-    const itemTwo = new Item(itemInputTwo);
-    const itemThree = new Item(itemInputThree);
+    // const itemOne = new Item(itemInput);
+    // const itemTwo = new Item(itemInputTwo);
+    // const itemThree = new Item(itemInputThree);
 
-    postFetch(titleInput, itemOne, itemTwo, itemThree)
+    // let itemsCollection = [];
+    // itemsCollection.push(itemOne);
+    // itemsCollection.push(itemTwo);
+    // itemsCollection.push(itemThree);
+
+    // console.log(itemsCollection);
+
+    // postFetch(titleInput, itemsCollection)
+
+    postFetch(titleInput, itemInput, itemInputTwo, itemInputThree)
     
 }
 
@@ -81,8 +90,9 @@ function postFetch(title, item1, item2, item3) {
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({board: {
             title: title,
-            items: [item1, item2, item3]
-        }})
+            items:[item1, item2, item3] 
+        }}
+        )
     })
     .then(response => response.json())
     .then(board => {
