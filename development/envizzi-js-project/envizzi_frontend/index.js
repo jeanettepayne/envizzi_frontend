@@ -4,8 +4,6 @@ class Board {
     constructor(board) {
         this.id = board.id;
         this.title = board.title;
-        // this.items = []
-        this.item = board.attributes.item
     }
 
 }
@@ -70,6 +68,6 @@ function postFetch(title, item1, item2, item3) {
     .then(response => response.json())
     .then(board => {
         console.log(board);
-        const boardData = board.data
+        // const boardData = board.data
     })
 }
