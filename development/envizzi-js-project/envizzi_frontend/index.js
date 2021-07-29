@@ -1,6 +1,8 @@
 const endPoint = "http://localhost:3000/api/v1/boards"
 
 class Board {
+    static all = []
+
     constructor(id, title) {
         this.id = id;
         this.title = title;
@@ -18,8 +20,10 @@ class Board {
 
 
 class Item {
-    constructor(id, name) {
-        this.id = id
+    static all = []
+
+    constructor(name, id) {
+        this.id = id;
         this.name = name
 
         Item.all.push(this)
@@ -63,7 +67,11 @@ function createFormHandler(e) {
     const itemInputTwo = document.querySelector("#input-item-name-2").value
     const itemInputThree = document.querySelector("#input-item-name-3").value
 
-    postFetch(titleInput, itemInput, itemInputTwo, itemInputThree)
+    const itemOne = new Item(itemInput);
+    const itemTwo = new Item(itemInputTwo);
+    const itemThree = new Item(itemInputThree);
+
+    postFetch(titleInput, itemOne, itemTwo, itemThree)
     
 }
 
@@ -74,9 +82,6 @@ function postFetch(title, item1, item2, item3) {
         body: JSON.stringify({board: {
             title: title,
             items: [item1, item2, item3]
-            // board.items.forEach(item => {
-            //     new Item(item)
-            // })
         }})
     })
     .then(response => response.json())
