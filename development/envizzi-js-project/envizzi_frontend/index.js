@@ -44,17 +44,25 @@ function getBoards() {
     .then(response => response.json())
     .then(boards => {
         boards.data.forEach(board => {
-            document.querySelector('#board-container').innerHTML += (`<div data-id=${board.id}>
+            document.querySelector('#board-container').insertAdjacentHTML('beforeend', `<div id=board-${board.id}>
                     <h2>${board.attributes.title}</h2> 
                 </div>`);
                     board.attributes.items.forEach(item => {
-                        document.querySelector('#board-container').innerHTML += (`<p>${item.name}</p>`)
+                        document.querySelector(`#board-${board.id}`).insertAdjacentHTML('beforeend', `<p>${item.name}</p>`)
                     })
                     const button = document.createElement('button');
-                    button.innerHTML = "Remove Board"
-                    document.querySelector('#board-container').append(button)
+                    button.setAttribute('id', `button-${board.id}`)
+                    button.insertAdjacentHTML('beforeend', "Remove Board")
+                    // button.addEventListener("click", (e) => {
+                    //     console.log('delete button')
+                    //     deleteBoard(e)
+                    // })
+                    document.querySelector(`#board-${board.id}`).append(button)
+                    document.querySelector(`#button-${board.id}`).addEventListener("click", (e) => {
+                        deleteBoard(board)
+                    })
 
-                    button.addEventListener("onclick", (e) => deleteBoard(e))
+
                     // document.querySelector('#board-container').append(<button data-id=${board.id} onclick="deleteBoard()">Remove Board</button>)
                     // document.querySelector('#board-container').append(`<button type="button" onclick="deleteBoard()">Remove Board</button>`)
             })
@@ -103,7 +111,7 @@ function postFetch(title, item1, item2, item3) {
     .then(board => {
         console.log(board);
         // const boardData = board.data
-        document.querySelector('#board-container').innerHTML += (`<div data-id=${board.id}>
+        document.querySelector('#board-container').innerHTML += (`<div id=board-${board.id}>
                 <h2>${board.data.attributes.title}</h2> 
             </div>`);
                 board.data.attributes.items.forEach(item => {
@@ -112,8 +120,18 @@ function postFetch(title, item1, item2, item3) {
     })
 }
 
-function deleteBoard() {
+function deleteBoard(board) {
     console.log('delete button worked');
+    const boardID = document.querySelector(`#board-${board.id}`)
+
+    fetch(`http://localhost:3000/api/v1/boards/${board.id}`, {
+        method: 'DELETE'
+    })
+    .then(response => response.json())
+    .then(json => {
+        const selectedBoard = document.querySelector(`#board-${board.id}`)
+        selectedBoard.remove()
+    })
 }
 
 
