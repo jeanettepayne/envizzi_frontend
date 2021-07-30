@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', function() {
     createBoardForm.addEventListener("submit", (e) => createFormHandler(e))
 });
 
-
 function getBoards() {
     fetch(endPoint)
     .then(response => response.json())
@@ -51,10 +50,15 @@ function getBoards() {
                     board.attributes.items.forEach(item => {
                         document.querySelector('#board-container').innerHTML += (`<p>${item.name}</p>`)
                     })
+                    const button = document.createElement('button');
+                    button.innerHTML = "Remove Board"
+                    document.querySelector('#board-container').append(button)
 
-
+                    button.addEventListener("onclick", (e) => deleteBoard(e))
+                    // document.querySelector('#board-container').append(<button data-id=${board.id} onclick="deleteBoard()">Remove Board</button>)
+                    // document.querySelector('#board-container').append(`<button type="button" onclick="deleteBoard()">Remove Board</button>`)
             })
-             
+            
         })
         // document.querySelector('#board-container').innerHTML += boardVisual;
     }
@@ -84,6 +88,7 @@ function createFormHandler(e) {
     
 }
 
+
 function postFetch(title, item1, item2, item3) {
     fetch(endPoint, {
         method: "POST",
@@ -98,7 +103,17 @@ function postFetch(title, item1, item2, item3) {
     .then(board => {
         console.log(board);
         // const boardData = board.data
+        document.querySelector('#board-container').innerHTML += (`<div data-id=${board.id}>
+                <h2>${board.data.attributes.title}</h2> 
+            </div>`);
+                board.data.attributes.items.forEach(item => {
+                    document.querySelector('#board-container').innerHTML += (`<p>${item.name}</p>`)
+                })
     })
+}
+
+function deleteBoard() {
+    console.log('delete button worked');
 }
 
 
