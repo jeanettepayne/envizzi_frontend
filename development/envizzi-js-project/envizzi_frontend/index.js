@@ -57,10 +57,7 @@ function getBoards() {
                     const button = document.createElement('button');
                     button.setAttribute('id', `button-${board.id}`)
                     button.insertAdjacentHTML('beforeend', "Remove Board")
-                    // button.addEventListener("click", (e) => {
-                    //     console.log('delete button')
-                    //     deleteBoard(e)
-                    // })
+            
                     document.querySelector(`#board-${board.id}`).append(button)
                     document.querySelector(`#button-${board.id}`).addEventListener("click", (e) => {
                         deleteBoard(board)
@@ -83,6 +80,8 @@ function createFormHandler(e) {
     const itemInputTwo = document.querySelector("#input-item-name-2").value
     const itemInputThree = document.querySelector("#input-item-name-3").value
 
+    // const newBoard = new Board(titleInput);
+
     // const itemOne = new Item(itemInput);
     // const itemTwo = new Item(itemInputTwo);
     // const itemThree = new Item(itemInputThree);
@@ -95,6 +94,8 @@ function createFormHandler(e) {
     // console.log(itemsCollection);
 
     // postFetch(titleInput, itemsCollection)
+
+    // postFetch(newBoard, itemOne, itemTwo, itemThree)
 
     postFetch(titleInput, itemInput, itemInputTwo, itemInputThree)
     
@@ -128,21 +129,20 @@ function postFetch(title, item1, item2, item3) {
                     document.querySelector(`#button-${board.id}`).addEventListener("click", (e) => {
                         deleteBoard(board)
                     })
-                    
+        location.reload();           
     })
+    
 }
 
 function deleteBoard(board) {
-    const boardID = document.querySelector(`#board-${board.id}`)
-
-    fetch(`http://localhost:3000/api/v1/boards/${board.id}`, {
+     fetch(`http://localhost:3000/api/v1/boards/${board.id}`, {
         method: 'DELETE'
     })
-    .then(response => response.json())
-    .then(json => {
-        const selectedBoard = document.querySelector(`#board-${board.id}`)
-        selectedBoard.remove()
+    .then(() => {
+        document.getElementById(`board-${board.id}`).remove()
+        Board.all = Board.all.filter(board => board.id !== this.id)
     })
+    
 }
 
 
