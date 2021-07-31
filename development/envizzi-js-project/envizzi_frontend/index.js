@@ -15,11 +15,6 @@ class Board {
         const newItem = new Item(item.name)
         this.items.push(newItem)
     }
-
-    render() {
-
-    }
-
 }
 
 
@@ -35,7 +30,6 @@ class Item {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log(`Okay, it's loaded and working`);
     getBoards();
 
     const createBoardForm = document.querySelector("#create-board-form")
