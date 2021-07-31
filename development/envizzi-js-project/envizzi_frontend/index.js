@@ -62,14 +62,9 @@ function getBoards() {
                     document.querySelector(`#button-${board.id}`).addEventListener("click", (e) => {
                         deleteBoard(board)
                     })
-
-
-                    // document.querySelector('#board-container').append(<button data-id=${board.id} onclick="deleteBoard()">Remove Board</button>)
-                    // document.querySelector('#board-container').append(`<button type="button" onclick="deleteBoard()">Remove Board</button>`)
             })
             
         })
-        // document.querySelector('#board-container').innerHTML += boardVisual;
     }
 
 
@@ -79,23 +74,6 @@ function createFormHandler(e) {
     const itemInput = document.querySelector("#input-item-name").value
     const itemInputTwo = document.querySelector("#input-item-name-2").value
     const itemInputThree = document.querySelector("#input-item-name-3").value
-
-    // const newBoard = new Board(titleInput);
-
-    // const itemOne = new Item(itemInput);
-    // const itemTwo = new Item(itemInputTwo);
-    // const itemThree = new Item(itemInputThree);
-
-    // let itemsCollection = [];
-    // itemsCollection.push(itemOne);
-    // itemsCollection.push(itemTwo);
-    // itemsCollection.push(itemThree);
-
-    // console.log(itemsCollection);
-
-    // postFetch(titleInput, itemsCollection)
-
-    // postFetch(newBoard, itemOne, itemTwo, itemThree)
 
     postFetch(titleInput, itemInput, itemInputTwo, itemInputThree)
     
