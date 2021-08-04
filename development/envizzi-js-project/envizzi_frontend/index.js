@@ -100,8 +100,7 @@ function postFetch(title, item1, item2, item3) {
                     document.querySelector(`#board-${board.id}`).append(button)
                     document.querySelector(`#button-${board.id}`).addEventListener("click", (e) => {
                         deleteBoard(board)
-                    })
-        location.reload();           
+                    })           
     })
     
 }
